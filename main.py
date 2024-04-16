@@ -55,3 +55,12 @@ class Store():
         else:
             return None
 
+    def info(self):
+        print(f'Название магазина - {self.name}.')
+        print(f'Адрес магазина - {self.address}.')
+        print('Ассортимент магазина:')
+        for index, (key, value) in enumerate(self.items.items(), start=1):
+            print(f'{index}. {key} - {value}.')
+
+
+
