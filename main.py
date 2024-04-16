@@ -35,25 +35,28 @@ class Store():
     def add_item(self, item, price):
         self.items[item] = price
         print(f'Добавлен новый товар - {item}.')
-        print(f'Цена товара - {price}.')
+        print(f'Цена товара - {price}. \n')
 
     def delete_item(self, item):
-        print(f'Товар {item} удален.')
-        self.items.pop(item, None)
+        if item in self.items:
+            print(f'Товар {item} удален. \n')
+            self.items.pop(item, None)
+        else:
+            print('Товар отсутствует в ассортименте. \n')
 
     def get_price(self, item):
         if item in self.items:
             price = self.items[item]
-            print(f'Цена товара {item} - {price}.')
+            print(f'Цена товара {item} - {price}. \n')
         else:
-            return None
+            print(None, '\n')
 
     def renew_price(self, item, new_price):
         if item in self.items:
             self.items[item] = new_price
-            print(f'Новая цена товара {item} - {new_price}.')
+            print(f'Новая цена товара {item} - {new_price}. \n')
         else:
-            return None
+            print('Товар отсутствует в ассортименте. \n')
 
     def info(self):
         print(f'Название магазина - {self.name}.')
@@ -61,6 +64,21 @@ class Store():
         print('Ассортимент магазина:')
         for index, (key, value) in enumerate(self.items.items(), start=1):
             print(f'{index}. {key} - {value}.')
+        print()
 
 
+store1 = Store('Пятерочка', 'Жулебинский б., д.25', {'яблоки':100, 'груши':130})
+store2 = Store('Продукты', 'ул. Летчика Ларюшина, д.4', {'чипсы':110, 'Corona':180})
+store3 = Store('Дикси', 'Комсомольский пр., д.28', {'картошка':50, 'перец':330})
 
+store1.info()
+store2.info()
+store3.info()
+
+store1.add_item('мандарины', 120)
+store1.renew_price('яблоки', 110)
+store1.renew_price('картошка', 60)
+store1.delete_item('груши')
+store1.delete_item('картошка')
+store1.get_price('мандарины')
+store1.get_price('перец')
